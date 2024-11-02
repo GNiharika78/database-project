@@ -1,6 +1,8 @@
 
 # Database Normalization Project
-
+Team members:
+Niharika Gurram [16360904]
+Rohith Reddy Yarramreddy [12618055]
 ---
 
 ## Project Overview
@@ -45,29 +47,33 @@ This project provides a Python-based tool for decomposing relational databases i
 ## Example Run
 
 ```plaintext
-Enter the filename for the relation (e.g., 'relationinput.xlsx'): input.xlsx
-Enter the filename for functional dependencies (e.g., 'FD.txt'): FD.txt
-Enter the primary keys, separated by commas: StudentID, Course
+Enter the primary keys, separated by commas:  OrderID,FoodID,DrinkID
+Detect Highest Normal form of table: Yes(1), No(0):  1
+Highest normal form: 0NF
 Select the highest level of normalization you want to achieve:
-1. 1NF
-2. 2NF
-3. 3NF
-4. BCNF
-5. 4NF
-6. 5NF
-Enter your choice (1-6): 5
+Select 1 - Normalisation up to 1NF
+Select 2 - Normalisation up to 2NF
+Select 3 - Normalisation up to 3NF
+Select 4 - Normalisation up to BCNF
+Select 5 - Normalisation up to 4NF
+Select 6 - Normalisation up to 5NF
+Enter your option (1-6): 4
 ```
 
 ## Example Output
 
 - **Normalized Tables** in SQL Schema format:
   ```sql
-  CREATE TABLE InputRelation_Partial_1 (
-      LastName VARCHAR(255),
-      StudentID VARCHAR(255),
-      FirstName VARCHAR(255),
-      PRIMARY KEY (StudentID)
-  );
+  CREATE TABLE DrinkAllergen (
+    OrderID VARCHAR(255),
+    FoodID VARCHAR(255),
+    DrinkID VARCHAR(255),
+    DrinkAllergen VARCHAR(255),
+    PRIMARY KEY (OrderID, FoodID, DrinkID, DrinkAllergen),
+    FOREIGN KEY (OrderID) REFERENCES BaseRelation(OrderID),
+    FOREIGN KEY (FoodID) REFERENCES BaseRelation(FoodID),
+    FOREIGN KEY (DrinkID) REFERENCES BaseRelation(DrinkID)
+);
   ```
 - **Tabular Displays** with fields, data, primary keys, and dependencies after each normalization stage.
 
